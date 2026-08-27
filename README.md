@@ -5,3 +5,5 @@ Shade-only Java library for Paper plugin authors. `groupId` `dev.regionlib`, art
 `MinecraftVersion.parse(Bukkit.getVersion())` reads `(MC: 1.21.1)` and `(MC: 26.1.2)`, including pre/rc, and does not treat 26.x as version 0.
 
 `Platform.current()` is Folia, Paper, or Spigot from class presence, not from the version string.
+
+`Teleports.teleportAsync` uses Paper/Folia async teleport. It never calls `Entity#teleport` on Folia.
