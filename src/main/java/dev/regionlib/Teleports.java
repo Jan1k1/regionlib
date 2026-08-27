@@ -13,10 +13,10 @@ public final class Teleports {
     }
 
     public static CompletableFuture<Boolean> teleportAsync(Entity entity, Location location) {
-        return teleportAsync(
-                Platform.current(),
-                () -> entity.teleportAsync(location),
-                () -> entity.teleport(location));
+        if (Platform.current() == Platform.SPIGOT) {
+            return CompletableFuture.completedFuture(entity.teleport(location));
+        }
+        return PaperTeleports.teleportAsync(entity, location);
     }
 
     static CompletableFuture<Boolean> teleportAsync(
