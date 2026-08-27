@@ -78,6 +78,7 @@ public final class MinecraftVersion {
         return isAtLeast(major, minor, 0);
     }
 
+    /** True if this is that release or a newer version. A pre or RC of the same numbers is not. */
     public boolean isAtLeast(int major, int minor, int patch) {
         if (this.major != major) {
             return this.major > major;
@@ -85,7 +86,10 @@ public final class MinecraftVersion {
         if (this.minor != minor) {
             return this.minor > minor;
         }
-        return this.patch >= patch;
+        if (this.patch != patch) {
+            return this.patch > patch;
+        }
+        return preRelease < 0 && releaseCandidate < 0;
     }
 
     @Override

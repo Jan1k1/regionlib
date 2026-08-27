@@ -63,13 +63,16 @@ class MinecraftVersionTest {
         assertEquals(11, rc.patch());
         assertEquals(-1, rc.preRelease());
         assertEquals(1, rc.releaseCandidate());
+        assertFalse(rc.isAtLeast(1, 21, 11));
+        assertTrue(rc.isAtLeast(1, 21, 10));
 
         MinecraftVersion yearPre = MinecraftVersion.parse("(MC: 26.1 Pre-Release 2)");
         assertEquals(26, yearPre.major());
         assertEquals(1, yearPre.minor());
         assertEquals(0, yearPre.patch());
         assertEquals(2, yearPre.preRelease());
-        assertTrue(yearPre.isAtLeast(26, 1));
+        assertFalse(yearPre.isAtLeast(26, 1));
+        assertTrue(yearPre.isAtLeast(26, 0));
         assertTrue(yearPre.isAtLeast(1, 21, 8));
     }
 }
